@@ -6,7 +6,7 @@ struct ChunkList {
     int DEFAULT_SIZE = 1000;
     vector<vector<int> > list;
     int chunkSize;
-    // mutex mtx;
+    mutex mtx;
 
     int convertIndexToChunk(int index) {
         return index / chunkSize;
@@ -22,6 +22,11 @@ struct ChunkList {
 
     ChunkList(int chunkSize) : chunkSize(chunkSize) {
         list = vector<vector<int> >();
+    }
+
+    ChunkList(ChunkList &other) {
+        list = other.list;
+        chunkSize = other.chunkSize;
     }
 
     void add(int el) {
@@ -54,9 +59,9 @@ struct ChunkList {
                 continue;
             }
 
-            // mtx.lock();
+            mtx.lock();
             list[i].erase(idx);
-            // mtx.unlock();
+            mtx.unlock();
         }
     }
 

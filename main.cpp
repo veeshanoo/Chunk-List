@@ -12,7 +12,7 @@ ll random(ll st, ll dr) {
 }
 
 void testSearch() {
-    ChunkList list = ChunkList(3);
+    ChunkList list(3);
 
     const int chunkSize = 1000;
     const int N = 1000;
@@ -22,8 +22,8 @@ void testSearch() {
     }
 
     for (int i = 0; i < 1e5; i++) {
-        int idx = random(0, N);
-        list.contains(idx);
+        // int idx = random(0, N);
+        list.contains(i);
     }
 }
 
